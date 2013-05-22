@@ -161,4 +161,6 @@ describe 'methods' do
    t 'find_element' do
      find_element(:tag_name, :text).class.must_equal Selenium::WebDriver::Element
    end
+
+   # Skip: x # x is only used in Pry
 end
