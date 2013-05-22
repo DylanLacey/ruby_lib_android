@@ -112,10 +112,13 @@ describe 'methods' do
 =begin
   Skip:
     ios_capabilities # save for iOS tests
-    absolute_app_path
-    server_url
-    restart
+    absolute_app_path # tested already by starting the driver for this test
+    server_url # sauce labs only
 =end
+   t 'restart' do
+     restart
+     mobile(:currentActivity).must_equal 'ApiDemos'
+   end
 
    t 'driver' do
      driver.browser.must_equal :Android
@@ -123,9 +126,9 @@ describe 'methods' do
 
 =begin
   Skip:
-    screenshot
-    driver_quit
-    start_driver
+    screenshot   # this is slow and already tested by Appium
+    driver_quit  # tested by restart
+    start_driver # tested by restart
     no_wait  # posts value to server, it's not stored locally
     set_wait # posts value to server, it's not stored locally
 =end
@@ -133,6 +136,7 @@ describe 'methods' do
      default_wait.must_equal 30
    end
 
+   # returns true unless an error is raised
    t 'exists' do
      exists(0,0) { true }.must_equal true
      exists(0,0) { raise 'error' }.must_equal false
