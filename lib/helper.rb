@@ -224,7 +224,10 @@ end
 module MiniTest::Reporter
   def before_test(suite, test)
     puts
-    puts "#{test} :: #{suite}"
+    # 'test_0002_::Appium::DATE' => ::Appium::DATE | version.rb | 2
+    test_number = test.match(/test_(\d+)_/)[1].to_i
+    test_str = test.split(/_\d+_/).last
+    puts ANSI.cyan { "#{test_str} | #{suite.to_s.gsub('::', ' ')} | #{test_number}" }
   end
 end
 
