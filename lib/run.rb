@@ -25,7 +25,7 @@ puts 'Start driver'
 use_selendroid = device == 'selendroid'
 puts "Use selendroid? #{use_selendroid}"
 
-Appium::Driver.new(debug: true, selendroid: use_selendroid, wait: 30).start_driver
+Appium::Driver.new(debug: true, selendroid: use_selendroid, wait: 1).start_driver
 
 =begin
 # Android doesn't like to be reset before booting up

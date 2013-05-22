@@ -2,13 +2,8 @@
 require 'rubygems'
 require 'appium_lib'
 require 'chronic_duration'
-
-# requires minitest-4.7.4
-
-# gem install minitest minitest-reporters chronic_duration appium_lib
-require 'minitest/autorun'
-# Format the report
-require 'minitest/reporters'
+require 'minitest/autorun' # requires minitest-4.7.4
+require 'minitest/reporters' # Format the report
 
 # for Sauce Labs reporting
 require 'rest_client' # https://github.com/archiloque/rest-client
@@ -41,8 +36,6 @@ def update_sauce opts
     end
   end
 end
-
-
 
 # Run tests in order
 class MiniTest::Unit::TestCase

@@ -15,7 +15,7 @@ describe 'driver.rb' do
     #            :app_package, :app_activity, :app_wait_activity,
     #            :sauce_username, :sauce_access_key, :port, :os, :debug
     t 'default_wait attr' do
-      default_wait.must_equal 30
+      default_wait.must_equal 1
     end
 
     t 'app_path attr' do
@@ -132,7 +132,7 @@ describe 'driver.rb' do
     set_wait # posts value to server, it's not stored locally
 =end
     t 'default_wait' do
-      default_wait.must_equal 30
+      default_wait.must_equal 1
     end
 
     # returns true unless an error is raised
