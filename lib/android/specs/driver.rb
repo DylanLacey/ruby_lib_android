@@ -11,7 +11,7 @@ describe 'driver.rb' do
   end
 end
 
-describe 'Appium::Driver' do
+describe 'Appium::Driver attributes' do
   # attr_reader :default_wait, :app_path, :app_name, :selendroid,
   #            :app_package, :app_activity, :app_wait_activity,
   #            :sauce_username, :sauce_access_key, :port, :os, :debug
@@ -64,4 +64,97 @@ describe 'Appium::Driver' do
   t 'debug attr' do
     debug.must_equal true
   end
+end
+
+describe 'Appium::Driver' do
+  t '@@loaded' do
+    loaded = $driver.class.class_variable_get :@@loaded
+    loaded.must_equal true
+  end
+
+  t '$driver.class' do
+    $driver.class.must_equal Appium::Driver
+  end
+end
+
+describe 'methods' do
+  t 'status' do
+    status.keys.sort.must_equal %w(sessionId status value)
+  end
+
+  t 'server_version' do
+    server_version.must_match /(\d+)\.(\d+).(\d+)/
+  end
+
+  def expected_android_capabilities
+    {:browserName => 'Android',
+     :platform => 'LINUX',
+     :version => '4.2',
+     :device => 'Android',
+     :name => 'Ruby Console Android Appium',
+     :app => 'api.apk',
+     :'app-package' => 'com.example.android.apis',
+     :'app-activity' => 'ApiDemos',
+     :'app-wait-activity' => 'ApiDemos'}
+  end
+
+  t 'android_capabilities & capabilities' do
+    exp = expected_android_capabilities
+    act = android_capabilities
+    act[:app] = File.basename act[:app]
+    act.must_equal exp
+
+    act = capabilities
+    act[:app] = File.basename act[:app]
+    act.must_equal exp
+  end
+
+=begin
+  Skip:
+    ios_capabilities # save for iOS tests
+    absolute_app_path
+    server_url
+    restart
+=end
+
+   t 'driver' do
+     driver.browser.must_equal :Android
+   end
+
+=begin
+  Skip:
+    screenshot
+    driver_quit
+    start_driver
+    no_wait  # posts value to server, it's not stored locally
+    set_wait # posts value to server, it's not stored locally
+=end
+   t 'default_wait' do
+     default_wait.must_equal 30
+   end
+
+   t 'exists' do
+     exists(0,0) { true }.must_equal true
+     exists(0,0) { raise 'error' }.must_equal false
+   end
+
+   # any script
+   t 'execute_script' do
+     execute_script('mobile: currentActivity').must_equal 'ApiDemos'
+   end
+
+   # any mobile method
+   t 'mobile' do
+     mobile(:currentActivity).must_equal 'ApiDemos'
+   end
+
+   # any elements
+   t 'find_elements' do
+     find_elements(:tag_name, :text).length.must_equal 12
+   end
+
+   # any element
+   t 'find_element' do
+     find_element(:tag_name, :text).class.must_equal Selenium::WebDriver::Element
+   end
 end

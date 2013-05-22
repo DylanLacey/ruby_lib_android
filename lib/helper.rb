@@ -102,11 +102,14 @@ class MiniTest::Reporters::ProgressReporter
     skips = runner.skips
     # Store pass/fail result and send to Sauce Labs
     $passed = false if fails > 0 || errors > 0
-    print("%d test#{tests == 1 ? '' : 's'}#{(asserts == fails && fails == errors && errors == skips && skips == 0) ? '' : ', '}" % [tests])
-    print('%d assertions, ' % [runner.assertion_count]) unless asserts == 0
-    print(red { '%d failures, ' } % [runner.failures]) unless fails == 0
-    print(red { "%d error#{runner.errors == 1 ? '' : 's'}#{skips ? '' : ', '}" } % [errors]) unless errors == 0
-    print(yellow { '%d skips' } % runner.skips) unless skips == 0
+    out = ''
+    out += ("%d test#{tests == 1 ? '' : 's'}#{(asserts == fails && fails == errors && errors == skips && skips == 0) ? '' : ', '}" % [tests])
+    out += ('%d assertions, ' % [runner.assertion_count]) unless asserts == 0
+    out += (red { '%d failures, ' } % [runner.failures]) unless fails == 0
+    out += (red { "%d error#{runner.errors == 1 ? '' : 's'}#{skips ? '' : ', '}" } % [errors]) unless errors == 0
+    out += (yellow { '%d skips' } % runner.skips) unless skips == 0
+    out = out.strip.gsub(/,\w*$/, '')
+    puts out
     puts
   end
 end
@@ -179,6 +182,7 @@ class MiniTest::Unit
 
         next unless src.kind_of? String
         ary = src.split "\n"
+        # this will break code that spans more than one line
         center = ary[1..-2].map { |line| "puts %(#{line.strip})\n#{line}" }
         # must use define method for test names with spaces.
         rewrite = ["define_method(%Q(#{test_name})) do\n", center.join("\n"), ary.last].join "\n"
