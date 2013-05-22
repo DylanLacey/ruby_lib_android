@@ -42,11 +42,22 @@ describe 'common/helper.rb' do
   end
 
   # t 'id' # id is for Selendroid
-=begin
+
   t 'back' do
-
+    # start page
+    eles = e_s_texts
+    eles.length.must_equal 12
+    # nav to new page.
+    # ele 0 is the title and can't be clicked.
+    eles[1].click
+    eles = e_s_texts
+    eles.length.must_equal 5
+    # go back
+    back
+    # start page
+    text 'NFC'
   end
-
+=begin
   t 'session_id' do
 
   end
