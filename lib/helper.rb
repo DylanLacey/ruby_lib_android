@@ -20,11 +20,6 @@ require 'method_source' # for .source
 
 $passed = true
 
-# There's no assert_false
-def assert_false act, msg = nil
-  assert act == false
-end
-
 # Report passed status to Sauce and quit the driver.
 def update_sauce opts
   # must use selenium-webdriver (2.32.1) or better for .session_id
