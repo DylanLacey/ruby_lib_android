@@ -1,0 +1,67 @@
+# encoding: utf-8
+
+describe 'driver.rb' do
+  t 'load_appium_txt' do
+    # __FILE__ is '(eval)' so use env var set by the Rakefile
+    path = ENV['APPIUM_TXT']
+    puts "appium.txt path in test is: #{path}"
+    load_appium_txt file: path, verbose: true
+    apk_name = File.basename(ENV['APP_PATH'])
+    assert_equal apk_name, 'api.apk'
+  end
+end
+
+describe 'Appium::Driver' do
+  # attr_reader :default_wait, :app_path, :app_name, :selendroid,
+  #            :app_package, :app_activity, :app_wait_activity,
+  #            :sauce_username, :sauce_access_key, :port, :os, :debug
+  t 'default_wait attr' do
+    default_wait.must_equal 30
+  end
+
+  t 'app_path attr' do
+    apk_name = File.basename app_path
+    apk_name.must_equal 'api.apk'
+  end
+
+  # Only used for Sauce Labs
+  t 'app_name attr' do
+    app_name.must_be_nil
+  end
+
+  t 'selendroid attr' do
+    selendroid.must_equal false
+  end
+
+  t 'app_package attr' do
+    app_package.must_equal 'com.example.android.apis'
+  end
+
+  t 'app_activity attr' do
+    app_activity.must_equal 'ApiDemos'
+  end
+
+  t 'app_wait_activity attr' do
+    app_wait_activity.must_equal 'ApiDemos'
+  end
+
+  t 'sauce_username attr' do
+    sauce_username.must_be_nil
+  end
+
+  t 'sauce_access_key attr' do
+    sauce_access_key.must_be_nil
+  end
+
+  t 'port attr' do
+    port.must_equal 4723
+  end
+
+  t 'os attr' do
+    os.must_equal :android
+  end
+
+  t 'debug attr' do
+    debug.must_equal true
+  end
+end
