@@ -7,6 +7,7 @@ ruby_lib's Android tests. Requires `Ruby 1.9.3` or better.
 - `rake android` Run all tests.
 - `rake android['android/element/generic']` Run a single test.
 - `arc` Opens the Appium Ruby Console (arc). Enables interactive testing.
+  - `gem install appium_console` if it's not installed already.
 
 api.apk is from [appium/android-apidemos](https://github.com/appium/android-apidemos)
 
