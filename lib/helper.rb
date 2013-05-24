@@ -183,7 +183,12 @@ class MiniTest::Unit
         next unless src.kind_of? String
         ary = src.split "\n"
         # this will break code that spans more than one line
-        center = ary[1..-2].map { |line| "puts %(#{line.strip})\n#{line}" }
+        center = ary[1..-2].map do |line|
+          printed_line = line.strip
+          # transform \n into \\n so it's printed properly by puts
+          printed_line = printed_line.gsub /\\/, '\\' * 4
+          "puts %(#{printed_line})\n#{line}"
+        end
         # must use define method for test names with spaces.
         rewrite = ["define_method(%Q(#{test_name})) do\n", center.join("\n"), ary.last].join "\n"
         # $stdout.puts ' --- rewriting'
