@@ -1,17 +1,28 @@
 # encoding: utf-8
 
 describe 'common/element/button' do
-  t 'button' do
+  before_first do
     # nav to buttons activity
     text('App').click
     text('Activity').click
     text('Animation').click
+  end
 
+  after_last do
+    # nav back to home activity
+    3.times { back; sleep 0.5 }
+  end
+
+  def fade_in
+    'Fade in'
+  end
+
+  t 'button' do
     # by index
-    button(0).name.must_equal 'Fade in'
+    button(0).name.must_equal fade_in
 
     # by name contains
-    button('ade').name.must_equal 'Fade in'
+    button('ade').name.must_equal fade_in
   end
 
   t 'buttons' do
@@ -20,7 +31,7 @@ describe 'common/element/button' do
   end
 
   t 'first_button' do
-    first_button.name.must_equal 'Fade in'
+    first_button.name.must_equal fade_in
   end
 
   t 'last_button' do
@@ -28,11 +39,11 @@ describe 'common/element/button' do
   end
 
   t 'button_exact' do
-    button_exact('Fade in').name.must_equal 'Fade in'
+    button_exact(fade_in).name.must_equal fade_in
   end
 
   t 'buttons_exact' do
-    buttons_exact('Fade in').first.name.must_equal 'Fade in'
+    buttons_exact(fade_in).first.name.must_equal fade_in
   end
 
   t 'e_buttons' do
@@ -42,8 +53,5 @@ describe 'common/element/button' do
   t 'button_num' do
     # select the second button containing 'in'
     button_num('in', 2).name.must_equal 'Zoom in'
-
-    # nav back to home activity
-    3.times { back; sleep 0.5 }
   end
 end

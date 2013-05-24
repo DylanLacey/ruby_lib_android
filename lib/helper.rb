@@ -143,6 +143,7 @@ end
 # prevent undefined method
 class MiniTest::Spec
   def after_last_method; end
+  def before_first_method; end
 end
 
 class MiniTest::Spec < MiniTest::Unit::TestCase
@@ -153,6 +154,12 @@ class MiniTest::Spec < MiniTest::Unit::TestCase
     # which is invoked on a test case.
     def after_last &block
       define_method 'after_last_method' do
+        self.instance_eval &block
+      end
+    end
+
+    def before_first &block
+      define_method 'before_first_method' do
         self.instance_eval &block
       end
     end
@@ -194,10 +201,12 @@ class MiniTest::Unit
         # $stdout.puts "def: #{rewrite.split("\n").first}"
         suite.instance_eval( rewrite )
       end
+      method_instance = suite.new(suite.test_methods.first)
+      method_instance.before_first_method
       result = _run_suite suite, type
       # suite isn't an instance that contains 'after_last_method'
       # create test instance and invoke after_last_method
-      suite.new(suite.test_methods.first).after_last_method
+      method_instance.after_last_method
       result
     end
   end
