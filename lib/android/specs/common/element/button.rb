@@ -15,8 +15,8 @@ describe 'common/element/button' do
   end
 
   t 'buttons' do
-    exp = '[Fade in, Zoom in, Modern fade in, Modern zoom in, Scale up, Thumbnail zoom]'
-    buttons.to_s.must_equal exp
+    exp = ['Fade in', 'Zoom in', 'Modern fade in', 'Modern zoom in', 'Scale up', 'Thumbnail zoom']
+    buttons.must_equal exp
   end
 
   t 'first_button' do

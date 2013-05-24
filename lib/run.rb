@@ -37,7 +37,7 @@ end
 =end
 
 if one_test
-  one_test = File.join(dir, test_dir + 'specs/', File.basename(one_test))
+  one_test = File.join(dir, test_dir + 'specs/', one_test)
   # require support (common.rb)
   Dir.glob(File.join dir, test_dir + '/*.rb') do |test|
     require test
