@@ -7,6 +7,8 @@ ruby_lib's Android tests
 - `rake android` Run all tests.
 - `rake android['android/element/generic']` Run a single test.
 
+api.apk is from [appium/android-apidemos](https://github.com/appium/android-apidemos)
+
 --
 
 ```java
