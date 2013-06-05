@@ -27,7 +27,7 @@ describe 'common/patch.rb' do
   describe 'common patch' do
     # By default, the webdriver gem will return message instead of origValue
     # {"message":"An unknown server-side error occurred while processing the command.","origValue":"Strategy id is not valid."}
-    t 'error_message' do
+    t 'id error_message' do
       value = ''
       begin
         set_wait 0
@@ -35,7 +35,14 @@ describe 'common/patch.rb' do
       rescue Exception => e;
         value = e.message
       end
-      value.must_equal 'Strategy id is not valid.'
+      value = value.split("\n").first.strip
+      value.must_equal 'Unable to search by ID for ok.'
+    end
+
+    # todo: add id test thar finds an element
+    t 'id success' do
+      el = id 'autocomplete_3_button_7'  # <string name="autocomplete_3_button_7">Text</string>
+      el.name.must_equal 'Text'
     end
   end
 end

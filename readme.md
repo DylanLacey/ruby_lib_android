@@ -20,6 +20,6 @@ api.apk is from [appium/android-apidemos](https://github.com/appium/android-apid
 --
 
 ```java
-Finished in 1 min 7 secs
-88 tests, 107 assertions
+Finished in 1 min 13 secs
+90 tests, 113 assertions
 ```

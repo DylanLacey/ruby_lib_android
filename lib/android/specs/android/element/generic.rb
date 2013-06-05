@@ -35,4 +35,10 @@ describe 'android/element/generic' do
     # back to start activity
     back; sleep 0.5
   end
+
+  t 'mobile find works before and after source' do
+    m :text
+    get_source.class.must_equal Hash
+    m :text
+  end
 end
