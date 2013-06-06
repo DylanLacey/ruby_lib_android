@@ -16,6 +16,7 @@ api.apk is from [appium/android-apidemos](https://github.com/appium/android-apid
 - [Installing Appium on OS X](https://github.com/appium/ruby_console/blob/master/osx.md)
 - [Overview](https://github.com/appium/ruby_lib/blob/master/docs/docs.md) 
 - [Android methods](https://github.com/appium/ruby_lib/blob/master/docs/android_docs.md)
+- [Minitest Expectations](http://ruby-doc.org/stdlib-1.9.3/libdoc/minitest/spec/rdoc/MiniTest/Expectations.html)
 
 --
 
