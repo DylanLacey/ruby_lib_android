@@ -51,4 +51,38 @@ describe 'android/helper' do
   t 'fast_duration' do
     fast_duration.must_equal 0.2
   end
+
+
+  def id_key
+    'animation_2_instructions'
+  end
+
+  def id_value
+    'Select an animation:'
+  end
+
+  t 'xml_keys' do
+    id_pair = xml_keys id_key
+    id_pair = id_pair.last
+    id_pair.length.must_equal 2
+    id_pair.first.must_equal id_key
+    id_pair.last.must_equal id_value
+  end
+
+  t 'resolve_id' do
+    str = resolve_id id_key
+    str.must_equal id_value
+  end
+
+  t 'xml_values' do
+    value = xml_values(id_value).first.last
+    value.must_equal id_value
+  end
+
+  t 'find by id' do
+    name('accessibility').click
+    name('accessibility node provider').click
+    id 'accessibility_node_provider' # Accessibility/Accessibility Node Provider
+    2.times { back; sleep 0.5 }
+  end
 end
