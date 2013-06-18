@@ -135,4 +135,37 @@ describe 'common/helper.rb' do
   t 'find_names' do
     find_names('App').first.name.must_equal 'App'
   end
+
+  def id_key
+    'animation_2_instructions'
+  end
+
+  def id_value
+    'Select an animation:'
+  end
+
+  t 'search_id' do
+    id_pair = search_id id_value
+    id_pair = id_pair.last
+    id_pair.length.must_equal 2
+    id_pair.first.must_equal id_key
+    id_pair.last.must_equal id_value
+  end
+
+  t 'resolve_id' do
+    str = resolve_id id_key
+    str.must_equal id_value
+  end
+
+  t 'search_value' do
+    value = search_value(id_key).first.last
+    value.must_equal id_value
+  end
+
+  t 'find by id' do
+    name('accessibility').click
+    name('accessibility node provider').click
+    id 'accessibility_node_provider' # Accessibility/Accessibility Node Provider
+    2.times { back; sleep 0.5 }
+  end
 end
