@@ -143,12 +143,12 @@ describe 'driver.rb' do
 
     # any script
     t 'execute_script' do
-      execute_script('mobile: currentActivity').must_equal 'ApiDemos'
+      execute_script('mobile: currentActivity').must_equal '.ApiDemos'
     end
 
     # any mobile method
     t 'mobile' do
-      mobile(:currentActivity).must_equal 'ApiDemos'
+      mobile(:currentActivity).must_equal '.ApiDemos'
     end
 
     # any elements
