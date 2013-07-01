@@ -37,11 +37,11 @@ describe 'driver.rb' do
     end
 
     t 'app_activity attr' do
-      app_activity.must_equal '.ApiDemos'
+      app_activity.must_equal 'ApiDemos'
     end
 
     t 'app_wait_activity attr' do
-      app_wait_activity.must_equal '.ApiDemos'
+      app_wait_activity.must_equal 'ApiDemos'
     end
 
     t 'sauce_username attr' do
@@ -93,8 +93,8 @@ describe 'driver.rb' do
        :name => 'Ruby Console Android Appium',
        :app => 'api.apk',
        :'app-package' => 'com.example.android.apis',
-       :'app-activity' => '.ApiDemos',
-       :'app-wait-activity' => '.ApiDemos'}
+       :'app-activity' => 'ApiDemos',
+       :'app-wait-activity' => 'ApiDemos'}
     end
 
     t 'android_capabilities & capabilities' do

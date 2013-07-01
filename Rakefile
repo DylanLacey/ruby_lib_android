@@ -2,12 +2,18 @@
 require 'rubygems'
 require 'rake'
 
+# Run sh and ignore exception
+def run_sh cmd
+  begin; sh cmd; rescue; end
+end
+
+# Run cmd. On failure run install and try again.
 def bash cmd
   begin
     sh cmd
   rescue
     Rake::Task['install'].execute
-    sh cmd
+    run_sh cmd
   end
 end
 
@@ -18,6 +24,8 @@ end
 # rake android
 desc 'Run the Android tests'
 task :android, :args, :test_file do |args, test_file|
+  # uninstall old api
+  run_sh 'adb uninstall com.example.android.apis'
   # rake android['ok']
   # args = android
   # test_file = {:args=>"ok"}
