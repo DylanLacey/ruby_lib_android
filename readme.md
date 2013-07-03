@@ -1,4 +1,4 @@
-ruby_lib_android
+ruby_lib_android [![Dependency Status](https://gemnasium.com/appium/ruby_lib_android.png)](https://gemnasium.com/appium/ruby_lib_android)
 =====================
 
 ruby_lib's Android tests. Requires `Ruby 1.9.3` or better.
