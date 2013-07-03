@@ -21,7 +21,9 @@ describe 'common/patch.rb' do
 
     # t 'tag_name' do; end # Doesn't work on Android
 
-    # location_rel # iOS Only. Android is blocked on https://github.com/appium/appium/issues/627
+    t 'location_rel' do
+      loc = first_s_text.location_rel
+    end
   end
 
   describe 'common patch' do
