@@ -25,7 +25,7 @@ describe 'android/element/generic' do
   end
 
   t 'names' do
-    names('a').length.must_equal 5
+    names('a').length.must_be :>=, 5
   end
 
   t 'scroll_to' do
