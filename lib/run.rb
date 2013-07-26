@@ -11,6 +11,10 @@ Run only the view album test:
   ruby run.rb ios view_album
 =end
 
+# Sanity check
+a = OpenStruct.new x: 'ok'
+raise 'x issue' unless a.x == 'ok'
+
 load_appium_txt file: File.expand_path('..',__FILE__), verbose: true
 
 dir = File.expand_path '..', __FILE__
