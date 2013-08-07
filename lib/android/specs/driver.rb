@@ -28,8 +28,8 @@ describe 'driver.rb' do
       app_name.must_be_nil
     end
 
-    t 'selendroid attr' do
-      selendroid.must_equal false
+    t 'device attr' do
+      device.must_equal :android
     end
 
     t 'app_package attr' do
@@ -54,10 +54,6 @@ describe 'driver.rb' do
 
     t 'port attr' do
       port.must_equal 4723
-    end
-
-    t 'os attr' do
-      os.must_equal :android
     end
 
     t 'debug attr' do
@@ -97,11 +93,8 @@ describe 'driver.rb' do
        :'app-wait-activity' => '.ApiDemos'}
     end
 
-    t 'android_capabilities & capabilities' do
+    t 'capabilities' do
       exp = expected_android_capabilities
-      act = android_capabilities
-      act[:app] = File.basename act[:app]
-      act.must_equal exp
 
       act = capabilities
       act[:app] = File.basename act[:app]

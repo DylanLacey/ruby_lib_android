@@ -33,7 +33,7 @@ describe 'android/element/generic' do
     e = scroll_to 'rotating button'
     e.text.must_equal 'Rotating Button'
     # back to start activity
-    back; sleep 0.5
+    back
   end
 
   t 'mobile find works before and after source' do

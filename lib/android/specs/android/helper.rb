@@ -85,6 +85,6 @@ describe 'android/helper' do
     name('accessibility').click
     name('accessibility node provider').click
     id 'accessibility_node_provider' # Accessibility/Accessibility Node Provider
-    2.times { back; sleep 0.5 }
+    2.times { back }
   end
 end

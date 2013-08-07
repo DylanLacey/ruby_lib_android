@@ -37,6 +37,6 @@ describe 'android/element/alert.rb' do
     alert_dismiss
 
     # nav to start activity
-    2.times { back; sleep 0.5 }
+    2.times { back }
   end
 end

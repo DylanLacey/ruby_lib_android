@@ -12,6 +12,6 @@ describe 'android/patch.rb' do
     ele.text.must_equal 'ok'
 
     # nav to start activity
-    3.times { back; sleep 0.5 }
+    3.times { back }
   end
 end

@@ -18,7 +18,7 @@ describe 'android/element/textfield' do
 
   after_last do
     # back to start
-    3.times { back; sleep 0.5 }
+    3.times { back }
   end
 
   t 'textfields' do

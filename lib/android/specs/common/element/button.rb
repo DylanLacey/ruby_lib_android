@@ -10,7 +10,7 @@ describe 'common/element/button' do
 
   after_last do
     # nav back to home activity
-    3.times { back; sleep 0.5 }
+    3.times { back }
   end
 
   def fade_in
