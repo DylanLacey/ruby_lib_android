@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-describe 'driver.rb' do
+describe 'driver' do
   t 'load_appium_txt' do
     # __FILE__ is '(eval)' so use env var set by the Rakefile
     path = ENV['APPIUM_TXT']
@@ -82,7 +82,7 @@ describe 'driver.rb' do
     end
 
     def expected_android_capabilities
-      {:browserName => 'Android',
+      {:compressXml=>false,
        :platform => 'LINUX',
        :version => '4.2',
        :device => 'Android',

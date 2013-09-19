@@ -65,7 +65,7 @@ describe 'android/helper' do
 
   t 'xml_keys' do
     id_pair = xml_keys id_key
-    id_pair = id_pair.last
+    id_pair = id_pair.to_a[0]
     id_pair.length.must_equal 2
     id_pair.first.must_equal id_key
     id_pair.last.must_equal id_value

@@ -40,13 +40,23 @@ describe 'common/patch.rb' do
         value = e.message
       end
       value = value.split("\n").first.strip
-      value.must_equal 'Unable to search by ID for ok.'
+      exp = "Could not find an element using supplied strategy. ID `ok` doesn't exist as text or content desc."
+      value.must_equal exp
     end
 
-    # todo: add id test thar finds an element
     t 'id success' do
       el = id 'autocomplete_3_button_7'  # <string name="autocomplete_3_button_7">Text</string>
       el.name.must_equal 'Text'
+    end
+
+    t 'find many elements by resource id' do
+      value = find_elements(:id, 'android:id/text1').length
+      value.must_equal 11
+    end
+
+    t 'find single element by resource id' do
+      value = id('android:id/text1').text
+      value.must_equal 'Accessibility'
     end
   end
 end

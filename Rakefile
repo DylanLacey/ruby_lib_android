@@ -19,6 +19,17 @@ def bash cmd
   end
 end
 
+# rake android['single_text_name']
+# rake android
+def run_android test_file=nil
+  path = File.expand_path('appium.txt', Rake.application.original_dir)
+  ENV['APPIUM_TXT'] = path
+  puts "Rake appium.txt path is: #{path}"
+  cmd = 'bundle exec ruby ./lib/run.rb android'
+  cmd += %Q( "#{test_file}") if test_file
+  bash cmd
+end
+
 # Run a single test with:
 # rake android['android/element/generic']
 #
@@ -27,21 +38,12 @@ end
 desc 'Run the Android tests'
 task :android, :args, :test_file do |args, test_file|
   Rake::Task[:adb_uninstall].execute
-  Rake::Task[:droid].execute
+  run_android test_file[:args]
 end
 
 desc 'Run the Android tests without uninstalling'
 task :droid do |args, test_file|
-  # rake android['ok']
-  # args = android
-  # test_file = {:args=>"ok"}
-  test_file = test_file[:args]
-  path = File.expand_path('appium.txt', Rake.application.original_dir)
-  ENV['APPIUM_TXT'] = path
-  puts "Rake appium.txt path is: #{path}"
-  cmd = 'bundle exec ruby ./lib/run.rb android'
-  cmd += %Q( "#{test_file}") if test_file
-  bash cmd
+  run_android test_file[:args]
 end
 
 desc 'Run bundle install'
