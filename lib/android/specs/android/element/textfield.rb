@@ -40,7 +40,7 @@ describe 'android/element/textfield' do
 
   t 'textfield' do
     textfield('right').text.must_equal right
-    textfield(0).text.must_equal left
+    textfield(1).text.must_equal left
   end
 
   t 'textfield_exact' do

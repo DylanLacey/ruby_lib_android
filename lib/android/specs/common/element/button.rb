@@ -19,7 +19,7 @@ describe 'common/element/button' do
 
   t 'button' do
     # by index
-    button(0).name.must_equal fade_in
+    button(1).name.must_equal fade_in
 
     # by name contains
     button('ade').name.must_equal fade_in

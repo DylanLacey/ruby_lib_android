@@ -1,5 +1,5 @@
 # encoding: utf-8
-describe 'common/helper.rb' do
+describe 'common/helper' do
   # wait is a success unless an error is raised
   # max_wait=0 is infinity to use 0.1
   t 'wait' do
@@ -71,7 +71,7 @@ describe 'common/helper.rb' do
   end
 
   t 'ele_index' do
-    ele_index('text', 1).name.must_equal 'Accessibility'
+    ele_index('text', 2).name.must_equal 'Accessibility'
   end
 
   t 'find_eles' do
