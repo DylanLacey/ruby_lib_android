@@ -14,7 +14,7 @@ describe 'common/helper' do
 
     # failed wait should error
     begin
-      wait(0.1,0) { raise 'error' }
+      wait(0.3) { raise 'error' }
     rescue Exception => e
       message = e.message
     end
