@@ -31,4 +31,12 @@ describe 'common/element/text' do
     # should pass
     s_text_exact('API Demos').text.must_equal 'API Demos'
   end
+
+  t 's_texts' do
+    s_texts('i').length.must_equal 6
+  end
+
+  t 's_texts_exact' do
+    s_texts_exact('API Demos').length.must_equal 1
+  end
 end
