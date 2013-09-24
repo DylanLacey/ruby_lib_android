@@ -6,7 +6,7 @@
     raw_execute # debug output for Pry
 =end
 
-describe 'common/patch.rb' do
+describe 'common/patch' do
 # Attributes are busted in Android.
 # Blocked on https://github.com/appium/appium/issues/628
   describe 'Selenium::WebDriver::Element methods' do
@@ -23,8 +23,8 @@ describe 'common/patch.rb' do
 
     t 'location_rel' do
       loc = first_s_text.location_rel
-      loc.x.class.must_equal Float
-      loc.y.class.must_equal Float
+      loc.x.class.must_equal String
+      loc.y.class.must_equal String
     end
   end
 

@@ -23,12 +23,12 @@ describe 'android/helper' do
 
   def page_class_data
     (<<-TXT).gsub ' ', ''
-          1x android.view.View
-          4x android.widget.FrameLayout
-          1x android.widget.ImageView
-          3x android.widget.LinearLayout
-          1x android.widget.ListView
-          12x android.widget.TextView
+      12x android.widget.TextView
+      4x android.widget.FrameLayout
+      4x android.widget.LinearLayout
+      2x android.view.View
+      1x android.widget.ListView
+      1x android.widget.ImageView
     TXT
   end
 
@@ -51,7 +51,7 @@ describe 'android/helper' do
   # t 'page' do # tested by get_android_inspect
 
   t 'fast_duration' do
-    fast_duration.must_equal 0.2
+    fast_duration.must_equal 0.0357
   end
 
 

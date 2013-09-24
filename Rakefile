@@ -42,7 +42,7 @@ task :android, :args, :test_file do |args, test_file|
 end
 
 desc 'Run the Android tests without uninstalling'
-task :droid do |args, test_file|
+task :droid, :args, :test_file do |args, test_file|
   run_android test_file[:args]
 end
 
