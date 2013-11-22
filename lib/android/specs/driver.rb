@@ -15,7 +15,9 @@ describe 'driver' do
     #            :app_package, :app_activity, :app_wait_activity,
     #            :sauce_username, :sauce_access_key, :port, :os, :debug
     t 'default_wait attr' do
+      set_wait 1
       default_wait.must_equal 1
+      set_wait # restore default
     end
 
     t 'app_path attr' do
@@ -82,15 +84,16 @@ describe 'driver' do
     end
 
     def expected_android_capabilities
-      {:compressXml=>false,
+      {:compressXml => false,
        :platform => 'LINUX',
        :version => '4.2',
        :device => 'Android',
        :name => 'Ruby Console Android Appium',
-       :app => 'api.apk',
        :'app-package' => 'com.example.android.apis',
        :'app-activity' => '.ApiDemos',
-       :'app-wait-activity' => '.ApiDemos'}
+       :'app-wait-activity' => '.ApiDemos',
+       :fastClear => false,
+       :app => 'api.apk'}
     end
 
     t 'capabilities' do
