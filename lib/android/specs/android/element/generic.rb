@@ -12,6 +12,14 @@ describe 'android/element/generic' do
     m :find
   end
 
+  t 'tag' do
+    tag 'TextView'
+  end
+
+  t 'tags' do
+    tags('TextView').length
+  end
+
   t 'text' do
     m :text
   end
@@ -24,6 +32,10 @@ describe 'android/element/generic' do
     m :name
   end
 
+  t 'name_exact' do
+    name_exact 'App'
+  end
+
   t 'names' do
     names('a').length.must_be :>=, 5
   end
@@ -31,6 +43,14 @@ describe 'android/element/generic' do
   t 'scroll_to' do
     text('Views').click
     e = scroll_to 'rotating button'
+    e.text.must_equal 'Rotating Button'
+    # back to start activity
+    back
+  end
+
+  t 'scroll_to_exact' do
+    text('Views').click
+    e = scroll_to_exact 'Rotating Button'
     e.text.must_equal 'Rotating Button'
     # back to start activity
     back
