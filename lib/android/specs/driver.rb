@@ -92,7 +92,7 @@ describe 'driver' do
        :'app-package' => 'com.example.android.apis',
        :'app-activity' => '.ApiDemos',
        :'app-wait-activity' => '.ApiDemos',
-       :fastClear => false,
+       :fastClear => true,
        :app => 'api.apk'}
     end
 
@@ -111,6 +111,7 @@ describe 'driver' do
     server_url # sauce labs only
 =end
     t 'restart' do
+      set_wait 1 # ensure wait is 1 before we restart.
       restart
       mobile(:currentActivity).must_equal '.ApiDemos'
     end

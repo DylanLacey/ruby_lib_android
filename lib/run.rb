@@ -33,7 +33,7 @@ puts "Use selendroid? #{use_selendroid}"
 
 ENV['APP_PATH'] = ENV['SAUCE_PATH'] if ENV['SAUCE_USERNAME'] && ENV['SAUCE_ACCESS_KEY']
 
-Appium::Driver.new(debug: true, wait: 1).start_driver
+Appium::Driver.new(fast_clear: true, debug: true, wait: 1).start_driver
 
 =begin
 # Android doesn't like to be reset before booting up
