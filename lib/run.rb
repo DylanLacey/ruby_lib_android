@@ -2,6 +2,7 @@
 require 'rubygems'
 require 'test_runner'
 require 'spec'
+require 'fakefs/safe'
 =begin
 node server.js -V --fast-reset --without-delay
 
@@ -16,7 +17,7 @@ Run only the view album test:
 a = OpenStruct.new x: 'ok'
 raise 'x issue' unless a.x == 'ok'
 
-load_appium_txt file: File.expand_path('..',__FILE__), verbose: true
+load_appium_txt file: ENV['APPIUM_TXT'], verbose: true
 
 dir = File.expand_path '..', __FILE__
 device = ARGV[0].downcase.strip
@@ -29,7 +30,6 @@ test_dir = "/#{device}/"
 puts 'Start driver'
 use_selendroid = device == 'selendroid'
 puts "Use selendroid? #{use_selendroid}"
-
 
 ENV['APP_PATH'] = ENV['SAUCE_PATH'] if ENV['SAUCE_USERNAME'] && ENV['SAUCE_ACCESS_KEY']
 

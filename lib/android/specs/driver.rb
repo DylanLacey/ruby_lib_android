@@ -1,5 +1,5 @@
 # encoding: utf-8
-
+# rake android[driver]
 describe 'driver' do
   t 'load_appium_txt' do
     # __FILE__ is '(eval)' so use env var set by the Rakefile
@@ -31,7 +31,7 @@ describe 'driver' do
     end
 
     t 'device attr' do
-      device.must_equal :android
+      device.must_equal 'Android'
     end
 
     t 'app_package attr' do
@@ -79,12 +79,32 @@ describe 'driver' do
 
       validate_path 'sauce-storage:some_storage_suffix'
       validate_path 'http://www.saucelabs.com'
-      validate_path '/Users/user/myapp.app'
-      validate_path 'C:\Program Files\myapp.apk'
+
+      # fake real paths for osx/windows.
+      FakeFS.activate!
+
+      osx_existing_path = '/Users/user/myapp.app'
+      FileUtils.mkdir_p osx_existing_path
+      validate_path osx_existing_path
+
+      # TODO: FakeFS fails on Windows paths due to the drive letters.
+      # Look into how opscode/chef tests this.
+      # windows_existing_path = "C:\\Program Files\\myapp.apk"
+      # FileUtils.mkdir_p windows_existing_path
+      # validate_path windows_existing_path
+
+      FakeFS.deactivate!
+
+      # bundle id test
       validate_path 'my.bundle.id'
 
-      absolute_app_path('../my_relative.apk').must_equal File.join(Dir.getwd, 'my_relative.apk')
+      # relative path test
+      relative_path = File.join __FILE__, ('..' + File::SEPARATOR) * 4, 'api.apk'
+      expected_path = File.expand_path relative_path
 
+      absolute_app_path(relative_path).must_equal expected_path
+
+      # invalid path test
       invalid_path_errors = false
       begin
       absolute_app_path('../../does_not_exist.apk')
@@ -107,9 +127,11 @@ describe 'driver' do
 
     def expected_android_capabilities
       {:compressXml => false,
-       :platform => 'LINUX',
-       :version => '4.2',
+       :platform => 'Linux',
+       :version => '4.3',
        :device => 'Android',
+       :'device-type' => 'tablet',
+       :'device-orientation' => 'portrait',
        :name => 'Ruby Console Android Appium',
        :'app-package' => 'com.example.android.apis',
        :'app-activity' => '.ApiDemos',
