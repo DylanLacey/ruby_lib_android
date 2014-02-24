@@ -72,6 +72,28 @@ describe 'driver' do
     t '$driver.class' do
       $driver.class.must_equal Appium::Driver
     end
+
+    t 'absolute_app_path' do
+      def absolute_app_path path; $driver.class.absolute_app_path path; end
+      def validate_path path;  absolute_app_path(path).must_equal path; end
+
+      validate_path 'sauce-storage:some_storage_suffix'
+      validate_path 'http://www.saucelabs.com'
+      validate_path '/Users/user/myapp.app'
+      validate_path 'C:\Program Files\myapp.apk'
+      validate_path 'my.bundle.id'
+
+      absolute_app_path('../my_relative.apk').must_equal File.join(Dir.getwd, 'my_relative.apk')
+
+      invalid_path_errors = false
+      begin
+      absolute_app_path('../../does_not_exist.apk')
+      rescue Exception
+        invalid_path_errors = true
+      ensure
+        invalid_path_errors.must_equal true
+      end
+    end
   end
 
   describe 'methods' do
