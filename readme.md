@@ -21,7 +21,7 @@ api.apk is from [appium/android-apidemos](https://github.com/appium/android-apid
 --
 
 ```java
-Finished in 2 mins 42 secs
+Finished in 1 min 35 secs
 
-102 runs, 123 assertions, 0 failures, 0 errors, 0 skips
+103 runs, 129 assertions, 0 failures, 0 errors, 0 skips
 ```
